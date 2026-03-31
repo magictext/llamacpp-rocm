@@ -305,7 +305,7 @@ jobs:
         cmake .. -G Ninja ^
           -DCMAKE_C_COMPILER="C:\opt\rocm\lib\llvm\bin\clang.exe" ^
           -DCMAKE_CXX_COMPILER="C:\opt\rocm\lib\llvm\bin\clang++.exe" ^
-          -DCMAKE_CXX_FLAGS="-IC:\opt\rocm\include" ^
+          -DCMAKE_CXX_FLAGS="-IC:\opt\rocm\include -D_USE_MATH_DEFINES" ^
           -DCMAKE_CROSSCOMPILING=ON ^
           -DCMAKE_BUILD_TYPE=Release ^
           -DGPU_TARGETS="%mapped_target%" ^
@@ -319,6 +319,8 @@ jobs:
           -DLLAMA_BUILD_BORINGSSL=ON ^
           -DGGML_NATIVE=OFF ^
           -DGGML_STATIC=OFF ^
+          -DGGML_CUDA_FA_ALL_QUANTS=ON ^
+          -DCMAKE_C_FLAGS="-D_USE_MATH_DEFINES" ^
           -DCMAKE_SYSTEM_NAME=Windows
 
         REM Build the project
